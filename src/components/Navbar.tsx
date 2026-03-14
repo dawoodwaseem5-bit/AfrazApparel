@@ -59,7 +59,7 @@ export default function Navbar() {
 
         {/* Mobile Nav Toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-black hover:text-accent transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -68,12 +68,12 @@ export default function Navbar() {
 
       {/* Mobile Nav Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full glass-dark border-t border-white/10 flex flex-col py-6 px-6 gap-6 shadow-2xl">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 flex flex-col py-6 px-6 gap-6 shadow-2xl">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-lg font-medium text-gray-200 hover:text-accent transition-colors"
+              className="text-lg font-medium text-black hover:text-accent transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
