@@ -3,6 +3,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-navbar-bg: var(--navbar-bg);
+  --color-footer-bg: var(--footer-bg);
+  
   --font-sans: var(--font-inter);
 
   --color-brand-50: #fff8f5;
@@ -18,19 +25,43 @@
   --color-brand-950: #421608;
 
   --color-accent: #f58025; /* Orange finish */
+
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 }
+
+@utility pause-on-hover {
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #1c1c1c;
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --surface: #ffffff;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --border: #e5e7eb;
+  --navbar-bg: rgba(255, 255, 255, 0.8);
+  --footer-bg: #1c1c1c;
 }
 
-/* Remove dark color scheme preference to force the light/white theme by default */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --foreground: #1c1c1c;
-  }
+.dark {
+  --background: #050505;
+  --foreground: #fcfcfc;
+  --surface: #0a0a0a;
+  --muted: #111111;
+  --muted-foreground: #a1a1aa;
+  --border: #ffffff10;
+  --navbar-bg: rgba(5, 5, 5, 0.8);
+  --footer-bg: var(--muted);
 }
 
 body {
@@ -39,14 +70,19 @@ body {
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-md border border-gray-200 shadow-xl;
+    background-color: var(--navbar-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
-  .glass-dark {
-    @apply bg-white/90 backdrop-blur-xl border border-gray-100 shadow-2xl;
+  .surface-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
   }
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-600 to-accent;
@@ -65,3 +101,4 @@ body {
     0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+

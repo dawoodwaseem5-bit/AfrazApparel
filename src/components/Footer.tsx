@@ -2,20 +2,20 @@ import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#1c1c1c] pt-16 pb-8 border-t-4 border-accent">
+    <footer className="w-full bg-[#2B2B2B] dark:bg-black pt-16 pb-8 border-t-4 border-accent">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
           <div className="col-span-1 lg:col-span-1">
             <a href="#" className="flex items-center gap-3 mb-6 group inline-block">
               <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 transition-transform group-hover:scale-105 bg-white rounded-md p-1">
+                <div className="relative w-10 h-10 transition-transform group-hover:scale-105 bg-white dark:bg-transparent rounded-md p-1">
                   <img src="/logo.png" alt="AfrazApparel Logo" className="object-contain w-full h-full" />
                 </div>
                 <span className="font-playfair text-xl font-semibold tracking-wide text-white">
                   Afraz<span className="text-accent">Apparel</span>
                 </span>
-              </div>
+                </div>
             </a>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Setting the standard for premium, sustainable garment manufacturing worldwide. Crafting excellence since 1995.
@@ -84,7 +84,7 @@ export default function Footer() {
           
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-accent flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs">
             &copy; {new Date().getFullYear()} AfrazApparel Manufacturing. All rights reserved.
           </p>
