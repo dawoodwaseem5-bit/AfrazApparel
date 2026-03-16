@@ -35,13 +35,13 @@ export default function BrandsMarquee() {
               className="relative flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-110 cursor-default"
               style={{ width: "160px", height: "100px" }}
             >
-              <div className="relative w-full h-full flex items-center justify-center p-4 rounded-2xl border border-white/20">
-                <div className="relative w-full h-full">
+              <div className="relative w-full h-full flex items-center justify-center p-4 rounded-2xl border border-white/30 bg-white/35 shadow-lg shadow-black/10">
+                <div className={`relative w-full h-full ${brand.invert ? 'bg-accent' : 'bg-white/20'}`}>
                   <Image 
                     src={brand.src} 
                     alt={`${brand.name} logo`}
                     fill
-                    className={`object-contain p-2 mix-blend-screen filter grayscale contrast-[100] brightness-[1.5] ${brand.invert ? 'invert' : ''}`}
+                    className={`object-contain p-2 ${brand.invert ? 'filter grayscale brightness-110 invert mix-blend-screen' : 'filter brightness-105 contrast-110'}`}
                     sizes="160px"
                   />
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -17,43 +18,53 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#" },
+    { name: "Home", href: "/" },
     { name: "About Us", href: "#about" },
+    { name: "Company", href: "/company" },
     { name: "Services", href: "#services" },
-    { name: "Sustainability", href: "#sustainability" },
+    { name: "Articles", href: "/articles" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 w-full max-w-full z-50 transition-all duration-300 overflow-x-hidden ${
         isScrolled 
           ? "glass py-3" 
           : "bg-transparent py-5"
       }`}
     >
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-3 group">
+      <div className="w-full max-w-full mx-auto px-6 md:px-12 flex justify-between items-center min-w-0">
+        <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-14 h-14 transition-transform group-hover:scale-105">
             <img src="/logo.png" alt="AfrazApparel Logo" className="object-contain w-full h-full" />
           </div>
           <span className="font-playfair text-xl font-semibold tracking-wide text-black dark:text-white">
             Afraz<span className="text-accent">Apparel</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 items-center">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-accent dark:hover:text-accent transition-colors relative group"
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isRoute = link.href.startsWith("/");
+            const className = "text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-accent dark:hover:text-accent transition-colors relative group";
+            const content = (
+              <>
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+              </>
+            );
+            return isRoute ? (
+              <Link key={link.name} href={link.href} className={className}>
+                {content}
+              </Link>
+            ) : (
+              <a key={link.name} href={link.href} className={className}>
+                {content}
+              </a>
+            );
+          })}
           <ThemeToggle />
           <a
             href="#contact"
@@ -78,16 +89,29 @@ export default function Navbar() {
       {/* Mobile Nav Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-[#111111] border-t border-gray-100 dark:border-white/10 flex flex-col py-6 px-6 gap-6 shadow-2xl">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-lg font-medium text-black dark:text-gray-200 hover:text-accent transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isRoute = link.href.startsWith("/");
+            const className = "text-lg font-medium text-black dark:text-gray-200 hover:text-accent transition-colors";
+            return isRoute ? (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={className}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className={className}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            );
+          })}
         </div>
       )}
     </header>
