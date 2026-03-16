@@ -5,8 +5,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
-  MotionValue,
 } from "framer-motion";
 import {
   Factory,
@@ -127,7 +125,7 @@ const milestones: Milestone[] = [
   },
 ];
 
-/* ─── Scroll-driven card ─────────────────────────────────── */
+/* ─── Individual milestone card ─────────────────────────── */
 function TimelineItem({
   milestone,
   index,
@@ -138,37 +136,28 @@ function TimelineItem({
   const ref = useRef<HTMLDivElement>(null);
   const isLeft = index % 2 === 0;
 
+  // Scroll range: element enters viewport bottom → its center hits 60% mark
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 95%", "center 60%"],
+    offset: ["start 95%", "center 65%"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 60,
-    damping: 20,
-    restDelta: 0.001,
-  });
-
-  // Card: slide from side + fade
+  // NOTE: No useSpring here — springs start from 0 and animate to the real
+  // scroll value, causing an SSR/hydration flicker on Vercel. Direct
+  // useTransform is jank-free and immediately correct on page load.
   const cardX = useTransform(
-    smoothProgress,
+    scrollYProgress,
     [0, 1],
-    isLeft ? ["-80px", "0px"] : ["80px", "0px"]
+    isLeft ? ["-70px", "0px"] : ["70px", "0px"]
   );
-  const cardOpacity = useTransform(smoothProgress, [0, 0.6], [0, 1]);
-  const cardScale = useTransform(smoothProgress, [0, 1], [0.92, 1]);
+  const cardOpacity = useTransform(scrollYProgress, [0, 0.65], [0, 1]);
+  const cardScale  = useTransform(scrollYProgress, [0, 1],    [0.93, 1]);
 
-  // Ghost year: opposite direction, slower
-  const yearX = useTransform(
-    smoothProgress,
-    [0, 1],
-    isLeft ? ["40px", "0px"] : ["-40px", "0px"]
-  );
-  const yearOpacity = useTransform(smoothProgress, [0, 1], [0, 0.12]);
+  const yearX       = useTransform(scrollYProgress, [0, 1], isLeft ? ["30px", "0px"] : ["-30px", "0px"]);
+  const yearOpacity = useTransform(scrollYProgress, [0, 1], [0, 0.12]);
 
-  // Center dot: scale + glow
-  const dotScale = useTransform(smoothProgress, [0.1, 0.8], [0, 1]);
-  const dotOpacity = useTransform(smoothProgress, [0.1, 0.7], [0, 1]);
+  const dotScale   = useTransform(scrollYProgress, [0.15, 0.85], [0, 1]);
+  const dotOpacity = useTransform(scrollYProgress, [0.15, 0.75], [0, 1]);
 
   return (
     <div
@@ -218,7 +207,7 @@ function TimelineItem({
         <div className="md:hidden absolute left-[1.15rem] top-5 w-[26px] h-[2px] bg-border" />
       </motion.div>
 
-      {/* ── Center spine dot ── */}
+      {/* ── Center spine dot — desktop ── */}
       <motion.div
         style={{ scale: dotScale, opacity: dotOpacity }}
         className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-5 z-10
@@ -228,15 +217,15 @@ function TimelineItem({
         <milestone.icon size={16} className="text-accent" strokeWidth={2} />
       </motion.div>
 
-      {/* Mobile dot */}
+      {/* ── Mobile dot ── */}
       <motion.div
         style={{ scale: dotScale, opacity: dotOpacity }}
         className="md:hidden absolute left-[1.15rem] -translate-x-1/2 top-4 z-10
           w-5 h-5 rounded-full bg-white dark:bg-[#111] border-2 border-accent
-          flex items-center justify-center shadow shadow-accent/30"
+          shadow shadow-accent/30"
       />
 
-      {/* ── Ghost year ── */}
+      {/* ── Ghost year — desktop ── */}
       <motion.div
         style={{
           x: yearX,
@@ -253,20 +242,19 @@ function TimelineItem({
   );
 }
 
-/* ─── Scroll-driven spine line ───────────────────────────── */
-function SpineLine({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
+/* ─── Animated spine line ────────────────────────────────── */
+function SpineLine({
+  containerRef,
+}: {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+}) {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 80%", "end 20%"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 50,
-    damping: 18,
-    restDelta: 0.001,
-  });
-
-  const scaleY = useTransform(smoothProgress, [0, 1], [0, 1]);
+  // Direct transform — no spring — avoids the initial-value flicker on SSR
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <>
@@ -286,21 +274,23 @@ function SpineLine({ containerRef }: { containerRef: React.RefObject<HTMLDivElem
   );
 }
 
-/* ─── Main export ─────────────────────────────────────────── */
+/* ─── Main export ────────────────────────────────────────── */
 export default function CompanyTimeline() {
-  const timelineRef = useRef<HTMLDivElement>(null);
+  // Two separate refs — fixes the double-ref bug that broke scroll tracking
+  const sectionRef  = useRef<HTMLDivElement>(null); // outer <section> for parallax blobs
+  const timelineRef = useRef<HTMLDivElement>(null); // inner list container for SpineLine
 
-  // Parallax background blobs
   const { scrollYProgress: sectionProgress } = useScroll({
-    target: timelineRef,
+    target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const blob1Y = useTransform(sectionProgress, [0, 1], ["-5%", "10%"]);
+
+  const blob1Y = useTransform(sectionProgress, [0, 1], ["-6%", "10%"]);
   const blob2Y = useTransform(sectionProgress, [0, 1], ["10%", "-8%"]);
 
   return (
     <section
-      ref={timelineRef}
+      ref={sectionRef}
       className="w-full py-24 relative overflow-hidden"
     >
       {/* Parallax background blobs */}
@@ -334,9 +324,9 @@ export default function CompanyTimeline() {
           </p>
         </motion.div>
 
-        {/* Timeline container */}
-        <div className="relative" ref={timelineRef as React.RefObject<HTMLDivElement>}>
-          <SpineLine containerRef={timelineRef as React.RefObject<HTMLDivElement>} />
+        {/* Timeline body — separate ref from section */}
+        <div className="relative" ref={timelineRef}>
+          <SpineLine containerRef={timelineRef} />
 
           <div className="flex flex-col gap-14">
             {milestones.map((milestone, index) => (
@@ -348,13 +338,13 @@ export default function CompanyTimeline() {
             ))}
           </div>
 
-          {/* End cap */}
+          {/* End cap dot */}
           <motion.div
             className="hidden md:block absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-4 w-3 h-3 rounded-full bg-accent shadow-lg shadow-accent/40"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, type: "spring", stiffness: 180 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 180 }}
           />
         </div>
       </div>
