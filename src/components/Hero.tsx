@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { Download, CheckCircle2 } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const phrases = [
@@ -110,10 +110,11 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
             <a 
-              href="#services" 
+              href="/api/download-profile"
+              download="AfrazApparel-Profile-2025.pdf"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-full hover:bg-black transition-colors duration-300 hover-lift shadow-lg shadow-accent/20"
             >
-              Explore Services <ArrowRight size={18} />
+              Download Profile <Download size={18} />
             </a>
             <a 
               href="#contact" 
