@@ -12,6 +12,7 @@ import {
   LayoutGrid,
   Users,
   UserCog,
+  TrendingUp,
 } from "lucide-react";
 
 const container = {
@@ -27,9 +28,9 @@ const itemFromLeft = {
   visible: () => ({
     opacity: 1,
     x: 0,
-    transition: { 
-      duration: 0.55, 
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] 
+    transition: {
+      duration: 0.55,
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     },
   }),
 };
@@ -39,9 +40,9 @@ const itemFromRight = {
   visible: () => ({
     opacity: 1,
     x: 0,
-    transition: { 
-      duration: 0.55, 
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] 
+    transition: {
+      duration: 0.55,
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     },
   }),
 };
@@ -68,11 +69,6 @@ type CompanyRow =
 
 const companyData: CompanyRow[] = [
   {
-    label: "Company Name",
-    value: "Afraz Apparel",
-    icon: Building2,
-  },
-  {
     label: "Type of Business",
     value: "Manufacturer and Exporter",
     icon: Briefcase,
@@ -91,18 +87,6 @@ const companyData: CompanyRow[] = [
     label: "Corporate Office & Factory",
     value: "Plot No. E-100 Sector 31/D, P & T Society Korangi, Karachi-Pakistan 74900",
     icon: MapPin,
-  },
-  {
-    label: "Production Capacity",
-    value: "Garments: 100,000 pcs/month",
-    icon: Factory,
-    animateNumber: { target: 100000, prefix: "Garments: ", suffix: " pcs/month", duration: 4000 },
-  },
-  {
-    label: "Factory Space",
-    value: "15,000 Sq. ft.",
-    icon: LayoutGrid,
-    animateNumber: { target: 15000, suffix: " Sq. ft.", duration: 3600 },
   },
   {
     label: "Total Manpower",
@@ -172,9 +156,196 @@ function AnimatedNumber({
   );
 }
 
+// Bar chart data points for the graph cards (relative heights, 0–1)
+const productionBars = [0.3, 0.45, 0.55, 0.4, 0.65, 0.75, 0.6, 0.82, 0.9, 0.88, 0.95, 1.0];
+const factoryBars    = [0.2, 0.35, 0.5, 0.6, 0.55, 0.7, 0.78, 0.85, 0.88, 0.92, 0.95, 1.0];
+const monthLabels    = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+function AnimatedBarChart({
+  bars,
+  inView,
+  accentColor = "bg-accent",
+  delay = 0,
+}: {
+  bars: number[];
+  inView: boolean;
+  accentColor?: string;
+  delay?: number;
+}) {
+  return (
+    <div className="flex items-end gap-[3px] h-16">
+      {bars.map((h, i) => (
+        <motion.div
+          key={i}
+          className={`flex-1 rounded-t-sm ${accentColor}`}
+          initial={{ scaleY: 0, originY: 1 }}
+          animate={inView ? { scaleY: h } : { scaleY: 0 }}
+          transition={{
+            duration: 0.6,
+            delay: delay / 1000 + i * 0.04,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+          style={{ height: "100%", transformOrigin: "bottom" }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ProductionCapacityCard({ inView }: { inView: boolean }) {
+  return (
+    <motion.div
+      variants={itemFromLeft}
+      className="group relative rounded-2xl p-6 shadow-xl border overflow-hidden
+        bg-gradient-to-br from-accent/10 via-orange-50/80 to-amber-50/60
+        dark:from-accent/25 dark:via-accent/10 dark:to-orange-900/10
+        border-accent/30 dark:border-accent/40
+        hover:border-accent/60 dark:hover:border-accent/70
+        hover:shadow-accent/20 hover:shadow-2xl
+        transition-all duration-300 col-span-1 sm:col-span-2 lg:col-span-1"
+    >
+      {/* Glow blob */}
+      <div className="absolute -top-6 -right-6 w-32 h-32 bg-accent/30 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-8 -left-4 w-24 h-24 bg-orange-300/20 rounded-full blur-2xl pointer-events-none" />
+
+      {/* Header */}
+      <div className="relative flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center text-white shadow-lg shadow-accent/30 group-hover:scale-110 transition-transform duration-300">
+            <Factory size={22} strokeWidth={1.75} />
+          </div>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-0.5">
+              Production Capacity
+            </p>
+            <div className="text-2xl font-black text-foreground dark:text-white tabular-nums leading-none">
+              <AnimatedNumber
+                target={100000}
+                suffix=""
+                inView={inView}
+                duration={3600}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold px-2 py-1 rounded-full">
+          <TrendingUp size={12} />
+          <span>Peak</span>
+        </div>
+      </div>
+
+      <p className="relative text-xs text-muted-foreground dark:text-gray-400 mb-4 font-medium">
+        Garments / month — monthly output trend
+      </p>
+
+      {/* Animated Bar Chart */}
+      <div className="relative">
+        <AnimatedBarChart bars={productionBars} inView={inView} accentColor="bg-accent" />
+        {/* Month labels */}
+        <div className="flex gap-[3px] mt-1">
+          {monthLabels.map((m) => (
+            <div key={m} className="flex-1 text-center text-[8px] text-muted-foreground/60 dark:text-gray-600">
+              {m.slice(0, 1)}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer stat */}
+      <div className="relative mt-4 pt-4 border-t border-accent/20 flex justify-between items-center">
+        <span className="text-xs text-muted-foreground dark:text-gray-400">Annual capacity</span>
+        <span className="text-sm font-bold text-accent tabular-nums">1.2M pcs / yr</span>
+      </div>
+    </motion.div>
+  );
+}
+
+function FactorySpaceCard({ inView }: { inView: boolean }) {
+  return (
+    <motion.div
+      variants={itemFromRight}
+      className="group relative rounded-2xl p-6 shadow-xl border overflow-hidden
+        bg-gradient-to-br from-amber-50/70 via-orange-50/50 to-accent/5
+        dark:from-accent/15 dark:via-orange-900/10 dark:to-amber-900/5
+        border-amber-200/60 dark:border-accent/30
+        hover:border-accent/60 dark:hover:border-accent/60
+        hover:shadow-accent/20 hover:shadow-2xl
+        transition-all duration-300 col-span-1 sm:col-span-2 lg:col-span-1"
+    >
+      {/* Glow blob */}
+      <div className="absolute -top-6 -right-6 w-32 h-32 bg-amber-400/20 dark:bg-accent/20 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-8 -left-4 w-24 h-24 bg-orange-300/15 rounded-full blur-2xl pointer-events-none" />
+
+      {/* Header */}
+      <div className="relative flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center text-white shadow-lg shadow-accent/30 group-hover:scale-110 transition-transform duration-300">
+            <LayoutGrid size={22} strokeWidth={1.75} />
+          </div>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-0.5">
+              Factory Space
+            </p>
+            <div className="text-2xl font-black text-foreground dark:text-white tabular-nums leading-none">
+              <AnimatedNumber
+                target={15000}
+                suffix=" sq.ft"
+                inView={inView}
+                duration={3200}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-1 bg-amber-100 dark:bg-accent/20 text-amber-700 dark:text-accent text-xs font-bold px-2 py-1 rounded-full">
+          <TrendingUp size={12} />
+          <span>Full</span>
+        </div>
+      </div>
+
+      <p className="relative text-xs text-muted-foreground dark:text-gray-400 mb-4 font-medium">
+        Sq. ft — floor area utilization by zone
+      </p>
+
+      {/* Animated Bar Chart */}
+      <div className="relative">
+        <AnimatedBarChart
+          bars={factoryBars}
+          inView={inView}
+          accentColor="bg-amber-500 dark:bg-accent"
+          delay={200}
+        />
+        {/* Month labels */}
+        <div className="flex gap-[3px] mt-1">
+          {monthLabels.map((m) => (
+            <div key={m} className="flex-1 text-center text-[8px] text-muted-foreground/60 dark:text-gray-600">
+              {m.slice(0, 1)}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer breakdown */}
+      <div className="relative mt-4 pt-4 border-t border-amber-200/40 dark:border-accent/20 grid grid-cols-3 gap-2 text-center">
+        {[
+          { label: "Production", pct: "60%" },
+          { label: "Warehouse", pct: "25%" },
+          { label: "Admin", pct: "15%" },
+        ].map((z) => (
+          <div key={z.label}>
+            <div className="text-sm font-bold text-accent">{z.pct}</div>
+            <div className="text-[9px] text-muted-foreground/70 dark:text-gray-500 uppercase tracking-wide">{z.label}</div>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function CompanySection() {
   const gridRef = useRef<HTMLDivElement>(null);
+  const graphRef = useRef<HTMLDivElement>(null);
   const gridInView = useInView(gridRef, { once: true, amount: 0.2 });
+  const graphInView = useInView(graphRef, { once: true, amount: 0.3 });
   const [gridVisible, setGridVisible] = useState(false);
 
   useEffect(() => {
@@ -183,13 +354,11 @@ export default function CompanySection() {
   }, []);
 
   return (
-    <section
-      className="w-full py-24 bg-muted/40 dark:bg-brand-950/20 relative border-y border-border"
-    >
+    <section className="w-full py-24 bg-muted/40 dark:bg-brand-950/20 relative border-y border-border">
       <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-brand-100/30 dark:bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-accent/5 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="flex-container mx-auto px-6 md:px-12 relative z-10">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
         <motion.div
           className="text-center max-w-2xl mx-auto mb-16"
           initial={{ opacity: 0, y: 24 }}
@@ -208,9 +377,10 @@ export default function CompanySection() {
           </p>
         </motion.div>
 
+        {/* Regular info cards */}
         <motion.div
           ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6"
           variants={container}
           initial="hidden"
           animate={gridVisible ? "visible" : "hidden"}
@@ -248,6 +418,18 @@ export default function CompanySection() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Graph stat cards — Production Capacity & Factory Space */}
+        <motion.div
+          ref={graphRef}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          variants={container}
+          initial="hidden"
+          animate={gridVisible ? "visible" : "hidden"}
+        >
+          <ProductionCapacityCard inView={graphInView} />
+          <FactorySpaceCard inView={graphInView} />
         </motion.div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import CompanySection from "@/components/CompanySection";
+import CompanyTimeline from "@/components/CompanyTimeline";
 
 export const metadata = {
   title: "Company | AfrazApparel",
@@ -10,6 +11,7 @@ export default function CompanyPage() {
   return (
     <main className="min-h-screen pt-24">
       <CompanySection />
+      <CompanyTimeline />
     </main>
   );
 }
