@@ -189,7 +189,7 @@ export default function CompanySection() {
       <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-brand-100/30 dark:bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-accent/5 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
+      <div className="flex-container mx-auto px-6 md:px-12 relative z-10">
         <motion.div
           className="text-center max-w-2xl mx-auto mb-16"
           initial={{ opacity: 0, y: 24 }}
@@ -223,7 +223,7 @@ export default function CompanySection() {
             >
               <div className="absolute top-0 right-0 w-20 h-20 bg-accent/10 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brand-100 dark:bg-accent/20 flex items-center justify-center text-accent border border-brand-200/50 dark:border-accent/30 group-hover:scale-110 transition-transform duration-300">
+                <div className="shrink-0 w-12 h-12 rounded-xl bg-brand-100 dark:bg-accent/20 flex items-center justify-center text-accent border border-brand-200/50 dark:border-accent/30 group-hover:scale-110 transition-transform duration-300">
                   <row.icon size={24} strokeWidth={1.75} />
                 </div>
                 <div className="min-w-0 flex-1">

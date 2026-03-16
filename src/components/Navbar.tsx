@@ -28,7 +28,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 w-full max-w-full z-50 transition-all duration-300 overflow-x-hidden ${
+      className={`fixed top-0 left-0 right-0 w-full max-w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? "glass py-3" 
           : "bg-transparent py-5"
@@ -78,7 +78,8 @@ export default function Navbar() {
         <div className="md:hidden flex items-center gap-4">
           <ThemeToggle />
           <button
-            className="text-black dark:text-white hover:text-accent transition-colors"
+            aria-label="Toggle mobile menu"
+            className="text-black dark:text-white hover:text-accent transition-colors p-2 -mr-2 touch-manipulation"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
