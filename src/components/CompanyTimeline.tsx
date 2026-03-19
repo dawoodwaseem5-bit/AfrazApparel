@@ -169,7 +169,7 @@ function TimelineItem({
       {/* ── Card ── */}
       <motion.div
         style={{ x: cardX, opacity: cardOpacity, scale: cardScale }}
-        className="md:w-[calc(50%-2.5rem)] w-[calc(100%-3rem)] ml-12 md:ml-0 group"
+        className="md:w-[calc(50%-2.5rem)] w-[calc(100%-3rem)] ml-12 md:ml-0 group will-change-transform"
       >
         <div className="relative bg-surface dark:bg-white/5 border border-border hover:border-accent/40 rounded-2xl p-5 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden cursor-default">
           {/* Hover accent corner */}
@@ -293,14 +293,14 @@ export default function CompanyTimeline() {
       ref={sectionRef}
       className="w-full py-24 relative overflow-hidden"
     >
-      {/* Parallax background blobs */}
+      {/* Parallax background blobs — hidden on mobile to avoid GPU-killing blur recalcs on scroll */}
       <motion.div
         style={{ y: blob1Y }}
-        className="absolute top-0 left-0 w-1/2 h-1/3 bg-accent/5 blur-[140px] rounded-full pointer-events-none"
+        className="hidden md:block absolute top-0 left-0 w-1/2 h-1/3 bg-accent/5 blur-[140px] rounded-full pointer-events-none"
       />
       <motion.div
         style={{ y: blob2Y }}
-        className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-brand-100/20 dark:bg-accent/5 blur-[120px] rounded-full pointer-events-none"
+        className="hidden md:block absolute bottom-0 right-0 w-1/3 h-1/2 bg-brand-100/20 dark:bg-accent/5 blur-[120px] rounded-full pointer-events-none"
       />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
