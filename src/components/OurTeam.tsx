@@ -256,6 +256,9 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
           perspective: 1100px;
           height: 460px;
           border-radius: 12px;
+          list-style: none;
+          /* FIX 1: Ensure the container doesn't clip the 3D children */
+          transform-style: preserve-3d;
         }
         .team-flip-inner {
           position: relative;
@@ -265,7 +268,9 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
           transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
           border-radius: 12px;
         }
-        .team-flip-card:hover .team-flip-inner {
+        /* Trigger flip on hover AND active (for mobile tap) */
+        .team-flip-card:hover .team-flip-inner,
+        .team-flip-card:active .team-flip-inner {
           transform: rotateY(180deg);
         }
 
@@ -275,8 +280,10 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
           position: absolute;
           inset: 0;
           border-radius: 12px;
-          backface-visibility: hidden;
+          /* FIX 2: Webkit prefix + GPU acceleration */
           -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          transform: translateZ(0); /* Forces GPU rendering to prevent ghosting */
           overflow: hidden;
         }
 
@@ -289,13 +296,15 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
+          z-index: 2;
+          /* FIX 3: Explicitly set front at 0 on the Z-axis */
+          transform: rotateY(0deg);
         }
         .dark .team-flip-front {
           background: rgba(255,255,255,0.04);
           box-shadow: 0 2px 16px rgba(0,0,0,0.25);
         }
 
-        /* Expanding circle on front */
         .team-card-circle {
           position: absolute;
           width: 170px;
@@ -342,7 +351,8 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
 
         /* ── BACK face ── */
         .team-flip-back {
-          transform: rotateY(180deg);
+          /* FIX 4: translateZ(1px) physically separates back from front */
+          transform: rotateY(180deg) translateZ(1px);
           display: flex;
           align-items: center;
           justify-content: center;
