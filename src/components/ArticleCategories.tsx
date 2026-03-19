@@ -207,7 +207,7 @@ export default function ArticleCategories() {
           </motion.p>
         </motion.header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 min-w-0 w-full max-w-full overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 min-w-0 w-full max-w-full">
           {categories.map((category, index) => (
             <CategoryCard
               key={category.slug}
