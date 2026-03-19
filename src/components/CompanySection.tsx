@@ -177,7 +177,7 @@ function AnimatedBarChart({
       {bars.map((h, i) => (
         <motion.div
           key={i}
-          className={`flex-1 rounded-t-sm ${accentColor}`}
+          className={`will-change-transform flex-1 rounded-t-sm ${accentColor}`}
           initial={{ scaleY: 0, originY: 1 }}
           animate={inView ? { scaleY: h } : { scaleY: 0 }}
           transition={{
@@ -205,8 +205,8 @@ function ProductionCapacityCard({ inView }: { inView: boolean }) {
         transition-all duration-300 col-span-1 sm:col-span-2 lg:col-span-1"
     >
       {/* Glow blob */}
-      <div className="absolute -top-6 -right-6 w-32 h-32 bg-accent/30 rounded-full blur-2xl pointer-events-none" />
-      <div className="absolute -bottom-8 -left-4 w-24 h-24 bg-orange-300/20 rounded-full blur-2xl pointer-events-none" />
+      <div className="hidden md:block absolute -top-6 -right-6 w-32 h-32 bg-accent/30 rounded-full blur-2xl pointer-events-none" />
+      <div className="hidden md:block absolute -bottom-8 -left-4 w-24 h-24 bg-orange-300/20 rounded-full blur-2xl pointer-events-none" />
 
       {/* Header */}
       <div className="relative flex items-center justify-between mb-4">
@@ -273,8 +273,8 @@ function FactorySpaceCard({ inView }: { inView: boolean }) {
         transition-all duration-300 col-span-1 sm:col-span-2 lg:col-span-1"
     >
       {/* Glow blob */}
-      <div className="absolute -top-6 -right-6 w-32 h-32 bg-amber-400/20 dark:bg-accent/20 rounded-full blur-2xl pointer-events-none" />
-      <div className="absolute -bottom-8 -left-4 w-24 h-24 bg-orange-300/15 rounded-full blur-2xl pointer-events-none" />
+      <div className="hidden md:block absolute -top-6 -right-6 w-32 h-32 bg-amber-400/20 dark:bg-accent/20 rounded-full blur-2xl pointer-events-none" />
+      <div className="hidden md:block absolute -bottom-8 -left-4 w-24 h-24 bg-orange-300/15 rounded-full blur-2xl pointer-events-none" />
 
       {/* Header */}
       <div className="relative flex items-center justify-between mb-4">
@@ -355,8 +355,8 @@ export default function CompanySection() {
 
   return (
     <section className="w-full py-24 bg-muted/40 dark:bg-brand-950/20 relative border-y border-border">
-      <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-brand-100/30 dark:bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-accent/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="hidden md:block absolute top-0 right-0 w-1/3 h-1/2 bg-brand-100/30 dark:bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="hidden md:block absolute bottom-0 left-0 w-1/3 h-1/2 bg-accent/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <motion.div
