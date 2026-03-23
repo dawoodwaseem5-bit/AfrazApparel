@@ -74,14 +74,9 @@ function CategoryCard({
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const itemVariant =
-    reducedMotion
-      ? itemReduced
-      : variant === "mobile"
-        ? itemMobile
-        : index % 2 === 0
-          ? itemFromLeft
-          : itemFromRight;
+  // Remove x-offset animations to prevent hydration layout shifts where cards load off-center.
+  // Instead, use a unified Y-axis fade-up animation for all screen sizes.
+  const itemVariant = reducedMotion ? itemReduced : itemMobile;
 
   return (
     <motion.article
@@ -93,7 +88,7 @@ function CategoryCard({
       whileTap={reducedMotion ? undefined : { scale: 0.98 }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="group relative bg-surface dark:bg-white/5 rounded-2xl overflow-hidden border border-border hover:border-accent/40 shadow-lg hover:shadow-xl transition-shadow duration-300 origin-center min-w-0 w-full max-w-full"
+      className="group relative bg-surface dark:bg-white/5 rounded-2xl overflow-hidden border border-border hover:border-accent/40 shadow-lg hover:shadow-xl transition-shadow duration-300 origin-center min-w-0 w-full max-w-sm sm:max-w-md mx-auto"
     >
       <div className="block rounded-2xl overflow-hidden w-full">
         <motion.div
@@ -148,7 +143,12 @@ function CategoryCard({
 }
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(max-width: 767px)").matches;
+    }
+    return false;
+  });
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
     const update = () => setIsMobile(mq.matches);
@@ -207,7 +207,7 @@ export default function ArticleCategories() {
           </motion.p>
         </motion.header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 min-w-0 w-full max-w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 min-w-0 w-full max-w-full justify-center place-items-center">
           {categories.map((category, index) => (
             <CategoryCard
               key={category.slug}

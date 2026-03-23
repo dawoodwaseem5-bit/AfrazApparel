@@ -56,22 +56,32 @@ export default function ContactSection() {
             <div className="surface-card p-8 md:p-10 rounded-2xl border border-border shadow-xl dark:shadow-none">
               <h3 className="text-2xl font-playfair font-bold text-foreground mb-6">Send us a message</h3>
               
-              <form className="space-y-6">
+              <form action="https://formsubmit.co/afrazapparel13@gmail.com" method="POST" className="space-y-6">
+                {/* FormSubmit Config */}
+                <input type="hidden" name="_subject" value="New Inquiry from Afraz Apparel Website" />
+                <input type="hidden" name="_template" value="table" />
+                {/* Honeypot to prevent spam */}
+                <input type="text" name="_honey" style={{ display: 'none' }} />
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground/80">First Name</label>
                     <input 
                       type="text" 
+                      name="First Name"
+                      required
                       className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all dark:placeholder-gray-600"
-                      placeholder="John"
+                      placeholder="Afraz"
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground/80">Last Name</label>
                     <input 
                       type="text" 
+                      name="Last Name"
+                      required
                       className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all dark:placeholder-gray-600"
-                      placeholder="Doe"
+                      placeholder="Apparel"
                     />
                   </div>
                 </div>
@@ -80,14 +90,18 @@ export default function ContactSection() {
                   <label className="text-sm font-medium text-foreground/80">Email Address</label>
                   <input 
                     type="email" 
+                    name="email"
+                    required
                     className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all dark:placeholder-gray-600"
-                    placeholder="john@company.com"
+                    placeholder="afrazapparel.com"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground/80">Project Details</label>
                   <textarea 
+                    name="Project Details"
+                    required
                     rows={4}
                     className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none dark:placeholder-gray-600"
                     placeholder="Tell us about your production needs, quantities, and timelines..."
@@ -95,7 +109,7 @@ export default function ContactSection() {
                 </div>
 
                 <button 
-                  type="button"
+                  type="submit"
                   className="w-full bg-foreground text-background font-bold py-4 rounded-lg hover:bg-accent hover:text-white transition-all duration-300 mt-4 shadow-lg hover:shadow-accent/30"
                 >
                   Submit Inquiry
