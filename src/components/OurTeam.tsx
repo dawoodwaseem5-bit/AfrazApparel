@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 
-/* ── Real team member data ── */
 const teamMembers = [
   {
     id: "ceo",

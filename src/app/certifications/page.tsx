@@ -15,7 +15,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "A U.S. CBP program ensuring our supply chain meets rigorous international security standards — protecting against cargo theft, smuggling, and terrorism-related risks.",
+      "The Customs-Trade Partnership Against Terrorism (C-TPAT) is a U.S. Customs and Border Protection (CBP) voluntary security program. Our membership confirms that we have implemented stringent supply chain security measures — from verified manufacturing premises to employee background checks. This gives our U.S. buyers expedited customs clearance, fewer cargo inspections, and the assurance that every shipment has been handled under federally recognised security protocols from factory floor to port.",
     highlights: [
       "Verified secure manufacturing premises",
       "Reduced customs inspections & faster clearance",
@@ -34,7 +34,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "The world's largest cotton sustainability program. We source Better Cotton to support farmers in reducing water usage, protecting soils, and improving livelihoods.",
+      "The Better Cotton Initiative (BCI) is the world's largest cotton sustainability programme, operating in over 20 countries. By sourcing Better Cotton, we actively support farmers who grow cotton with less water, fewer pesticides, and healthier soil — protecting the environment while improving the economic viability of farming communities. Our BCI membership ensures traceable, responsibly sourced cotton throughout our supply chain, allowing international brands to meet their sustainability commitments with confidence.",
     highlights: [
       "Environmentally responsible cotton sourcing",
       "Reduced water and pesticide consumption",
@@ -53,7 +53,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "Validates our factories uphold fair wages, safe working environments, and humane working hours — ensuring every product is made with dignity.",
+      "The Business Social Compliance Initiative (BSCI) is a leading European framework for auditing and improving social standards in global supply chains. Our BSCI certification is the result of rigorous independent third-party audits assessing wages, working hours, health & safety conditions, and freedom of association across our factories. It signals to buyers and brands — especially in Europe — that our products are manufactured under conditions that respect human dignity and comply with the International Labour Organization's core conventions.",
     highlights: [
       "Fair wages and ethical labour practices",
       "Safe and healthy working environment",
@@ -72,7 +72,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "All eligible employees are enrolled in Pakistan's government-mandated pension scheme, demonstrating our commitment to long-term worker welfare.",
+      "The Employees' Old-Age Benefits Institution (EOBI) is the Government of Pakistan's mandatory pension and old-age benefit scheme. All eligible Afraz Apparel employees are registered and enrolled, with employer contributions made on their behalf every month. This provides our workforce with a formal safety net — pension income after retirement, survivor benefits for families, and invalidity coverage — reflecting our belief that every worker deserves long-term financial security, not just a pay cheque.",
     highlights: [
       "Pension and retirement security for workers",
       "Full government registration & compliance",
@@ -91,7 +91,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "Workers receive free medical care, sickness benefits, and industrial injury coverage through Pakistan's ESSI — a cornerstone of our worker welfare commitment.",
+      "The Employees' Social Security Institution (ESSI) is Pakistan's provincial social security framework providing comprehensive healthcare and income protection to enrolled workers. Every Afraz Apparel employee eligible under provincial law is registered with ESSI, granting them access to free hospitalisation, outpatient medical care, sickness allowances, maternity benefits, and compensation for industrial injuries. Our compliance with ESSI stands as a concrete, government-verified commitment to the health and wellbeing of the people who make our garments.",
     highlights: [
       "Free healthcare and medical treatment",
       "Sickness and maternity benefits",
@@ -110,7 +110,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "Listed on the FBR Active Taxpayer List, assuring buyers and partners they are working with a fully legitimate, fiscally transparent enterprise.",
+      "Afraz Apparel is an active, registered taxpayer listed on the Federal Board of Revenue's (FBR) Active Taxpayer List (ATL). This status confirms that our business meets Pakistan's income and sales tax filing obligations — making us a legally transparent, credible partner for international procurement. Buyers gain peace of mind knowing their supplier operates within a fully documented, government-verified financial framework, reducing compliance risk on their end and facilitating smoother procurement and payments.",
     highlights: [
       "Active taxpayer status with the FBR",
       "Transparent financial reporting",
@@ -129,7 +129,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "Verifies recycled content in our products and ensures responsible social, environmental, and chemical practices — helping brands meet sustainability pledges.",
+      "The Global Recycled Standard (GRS) is an international, voluntary, full product standard that sets requirements for third-party certification of recycled content, chain of custody, social and environmental practices, and chemical restrictions. Our GRS certification allows brands to make verified recycled content claims on finished garments — from recycled polyester to rPET — backed by full traceability through every stage of our supply chain. It helps our customers demonstrate genuine circular economy commitments to their end consumers.",
     highlights: [
       "Certified recycled material content",
       "Reduced environmental production impact",
@@ -148,7 +148,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "ICC membership confirms our commitment to ethical international trade, globally accepted standards, and seamless partnership with buyers worldwide.",
+      "As a member of the International Chamber of Commerce, Afraz Apparel subscribes to the world's most recognised framework for ethical international business conduct. The ICC provides the rules and standards that underpin trillions of dollars of global trade. Our membership signals to buyers across Europe, the Americas, and Asia that we operate under globally accepted commercial principles — and that in the rare case of a trade dispute, internationally recognised ICC arbitration mechanisms are available to protect both parties.",
     highlights: [
       "Adherence to global business standards",
       "Recognized for international trade",
@@ -167,7 +167,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "Member of Pakistan's premier trade body, validating our standing as a credible, established entity within Pakistan's manufacturing and export ecosystem.",
+      "The Karachi Chamber of Commerce & Industry (KCCI) is Pakistan's largest and most influential trade body, representing thousands of businesses across the country's economic capital. Our KCCI membership verifies our established commercial standing within Pakistan's manufacturing and export landscape. It provides buyers with independent confirmation that Afraz Apparel is a registered, credible, and active business entity — connected to trade facilitation channels, dispute resolution mechanisms, and international trade networks through one of South Asia's most prominent chambers.",
     highlights: [
       "Recognized registered business entity",
       "Trade facilitation & networking access",
@@ -186,7 +186,7 @@ const certifications = [
     badgeText: "text-brand-700 dark:text-brand-300",
     glowColor: "group-hover:shadow-accent/25",
     description:
-      "Every component of our certified garments — threads, buttons, dyes — is tested against 100+ harmful substances, making them safe even for babies.",
+      "OEKO-TEX® Standard 100 is one of the world's best-known labels for textiles tested for harmful substances. Every single component of our OEKO-TEX®–certified garments — fabric, thread, buttons, zippers, and dyes — is independently tested against a list of over 100 harmful substances including formaldehyde, heavy metals, pesticides, and allergenic dyes. The result is a product that is scientifically verified to be safe for prolonged skin contact, even for babies and newborns, making it the gold standard for consumer-facing safety claims.",
     highlights: [
       "Tested for 100+ harmful substances",
       "Safe for all skin types including babies",
@@ -196,27 +196,29 @@ const certifications = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring" as const, stiffness: 200, damping: 22 },
-  },
-};
-
 const headerVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
+
+// Reusable scroll-triggered fade+slide variants — no blur
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 48 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 180, damping: 24 },
+  },
+};
+
+const slideIn = (direction: "left" | "right"): Variants => ({
+  hidden: { opacity: 0, x: direction === "left" ? -60 : 60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", stiffness: 160, damping: 22 },
+  },
+});
 
 export default function CertificationsPage() {
   return (
@@ -278,96 +280,59 @@ export default function CertificationsPage() {
         </motion.div>
       </section>
 
-      {/* ── Cards Grid ── */}
-      <section className="relative max-w-7xl mx-auto px-6 md:px-12 pb-28">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-        >
-          {certifications.map((cert) => (
-            <motion.article
+      {/* ── Certifications List (Vertical, Colored, Described) ── */}
+      <section className="relative max-w-7xl mx-auto px-6 md:px-12 pb-28 space-y-32">
+        {certifications.map((cert, index) => {
+          const isEven = index % 2 === 0;
+          const imgDir = isEven ? "left" : "right";
+          const txtDir = isEven ? "right" : "left";
+          return (
+            <motion.div
               key={cert.slug}
-              variants={cardVariants}
-              whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-              className={`group relative bg-surface dark:bg-white/5 rounded-3xl border border-border hover:border-accent/40 shadow-lg hover:shadow-2xl ${cert.glowColor} transition-shadow duration-300 overflow-hidden cursor-default`}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={fadeUp}
+              className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} items-center justify-between gap-12 lg:gap-24 group w-full`}
             >
-              {/* Gradient top bar */}
-              <div className={`h-1.5 w-full bg-gradient-to-r ${cert.categoryColor}`} />
-
-              {/* Subtle brand tint on hover */}
-              <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-5 bg-gradient-to-br ${cert.categoryColor} transition-opacity duration-500 pointer-events-none`}
-              />
-
-              {/* Logo area */}
-              <div className="relative flex items-center justify-center h-44 bg-muted/60 dark:bg-white/[0.03] px-10 overflow-hidden">
-                {/* Soft brand glow behind logo */}
-                <div
-                  className={`absolute inset-0 opacity-0 group-hover:opacity-20 bg-gradient-to-br ${cert.categoryColor} blur-2xl transition-opacity duration-500`}
-                />
+              {/* Image — slides in from its side */}
+              <motion.div
+                variants={slideIn(imgDir)}
+                className="flex-shrink-0 relative w-64 h-64 lg:w-96 lg:h-96 flex items-center justify-center p-10 bg-muted/10 dark:bg-white/5 rounded-3xl transition-shadow duration-300 hover:shadow-xl"
+              >
                 <Image
                   src={cert.image}
                   alt={cert.title}
-                  width={220}
-                  height={120}
-                  className="object-contain max-h-28 w-auto relative z-10 transition-transform duration-500 group-hover:scale-105"
+                  width={250}
+                  height={250}
+                  className="object-contain max-h-full max-w-full drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
                 />
-              </div>
+              </motion.div>
 
-              {/* Content */}
-              <div className="p-6 flex flex-col gap-4">
-                {/* Badge */}
-                <span
-                  className={`self-start text-xs font-bold px-3 py-1 rounded-full ${cert.badgeBg} ${cert.badgeText}`}
-                >
+              {/* Text — slides in from the opposite side */}
+              <motion.div
+                variants={slideIn(txtDir)}
+                className={`flex-1 flex flex-col ${isEven ? "lg:text-left items-center lg:items-start" : "lg:text-right items-center lg:items-end"} text-center max-w-2xl`}
+              >
+                <span className="inline-block text-xs font-bold px-4 py-1.5 mb-4 rounded-full bg-accent/10 text-brand-600 dark:text-accent tracking-[0.2em] uppercase">
                   {cert.category}
                 </span>
-
-                <div>
-                  <h2 className="text-xl font-playfair font-bold text-foreground group-hover:text-accent transition-colors duration-200">
-                    {cert.title}
-                  </h2>
-                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
-                    {cert.fullName}
-                  </p>
-                </div>
-
-                <p className="text-sm text-muted-foreground dark:text-gray-400 leading-relaxed">
+                <h2 className="text-4xl lg:text-5xl font-playfair font-bold text-foreground mb-3 leading-tight">
+                  {cert.title}
+                </h2>
+                <p className="text-base lg:text-lg text-brand-600/80 dark:text-brand-400/80 mb-5 font-medium italic">
+                  {cert.fullName}
+                </p>
+                <p className="text-base lg:text-lg text-foreground/70 leading-relaxed">
                   {cert.description}
                 </p>
+              </motion.div>
+            </motion.div>
+          );
+        })}
+      </section>
 
-                {/* Highlights */}
-                <ul className="mt-1 space-y-2">
-                  {cert.highlights.map((h) => (
-                    <li
-                      key={h}
-                      className="flex items-start gap-2.5 text-sm text-foreground dark:text-gray-300"
-                    >
-                      <span
-                        className={`mt-1 flex-shrink-0 w-4 h-4 rounded-full bg-gradient-to-br ${cert.categoryColor} flex items-center justify-center`}
-                      >
-                        <svg
-                          className="w-2.5 h-2.5 text-white"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={3}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </span>
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
-
+      <section className="relative max-w-7xl mx-auto px-6 md:px-12 pb-28">
         {/* ── Bottom CTA Banner ── */}
         <motion.div
           className="mt-20 relative overflow-hidden rounded-3xl p-10 md:p-16 text-center bg-gradient-to-br from-brand-600 via-accent to-brand-400 shadow-2xl shadow-accent/30"
