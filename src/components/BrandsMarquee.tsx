@@ -32,16 +32,16 @@ export default function BrandsMarquee() {
           {[...brands, ...brands].map((brand, index) => (
             <div 
               key={index}
-              className="relative flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-110 cursor-default"
+              className="relative flex-shrink-0 flex items-center justify-center transition-transform duration-300 hover:scale-110 cursor-default group"
               style={{ width: "160px", height: "100px" }}
             >
-              <div className="relative w-full h-full flex items-center justify-center p-4 rounded-2xl border border-white/30 bg-white/35 shadow-lg shadow-black/10">
-                <div className={`relative w-full h-full ${brand.invert ? 'bg-accent' : 'bg-white/20'}`}>
+              <div className="relative w-full h-full flex items-center justify-center">
+                <div className={`relative w-full h-full rounded-2xl overflow-hidden ${brand.invert ? 'bg-accent text-transparent' : 'bg-transparent'}`}>
                   <Image 
                     src={brand.src} 
                     alt={`${brand.name} logo`}
                     fill
-                    className={`object-contain p-2 ${brand.invert ? 'filter grayscale brightness-110 invert mix-blend-screen' : 'filter brightness-105 contrast-110'}`}
+                    className={`object-contain p-4 transition-all duration-300 ${brand.invert ? 'filter grayscale brightness-110 invert mix-blend-screen opacity-70 group-hover:opacity-100' : 'filter brightness-105 contrast-110 opacity-70 group-hover:opacity-100'}`}
                     sizes="160px"
                   />
                 </div>

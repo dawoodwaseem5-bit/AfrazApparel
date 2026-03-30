@@ -4,13 +4,13 @@ const certifications = [
   "C-TPAT.png",
   "bettercotton.png",
   "bsci.png",
+  "grs.png",
+  "icc.png",
+  "oeko.png",
   "eobi.png",
   "essi.png",
   "fbr.png",
-  "grs.png",
-  "icc.png",
   "kcci.png",
-  "oeko.png",
 ];
 
 export default function Certifications() {
