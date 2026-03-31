@@ -25,7 +25,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="w-full py-24 bg-background relative border-t border-border">
+    <section id="services" className="w-full py-24 bg-background relative overflow-hidden border-t border-border">
       <div className="absolute top-0 left-0 w-1/3 h-1/2 bg-brand-50/50 blur-[120px] rounded-full pointer-events-none opacity-50"></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">

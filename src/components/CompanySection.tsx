@@ -354,7 +354,7 @@ export default function CompanySection() {
   }, []);
 
   return (
-    <section className="w-full py-24 bg-muted/40 dark:bg-brand-950/20 relative border-y border-border">
+    <section className="w-full py-24 bg-muted/40 dark:bg-brand-950/20 relative overflow-hidden border-y border-border">
       <div className="hidden md:block absolute top-0 right-0 w-1/3 h-1/2 bg-brand-100/30 dark:bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="hidden md:block absolute bottom-0 left-0 w-1/3 h-1/2 bg-accent/5 blur-[100px] rounded-full pointer-events-none" />
 

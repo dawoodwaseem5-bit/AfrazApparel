@@ -79,7 +79,7 @@ export default function Hero() {
         {/* We use a placeholder pattern here to simulate an image bg without an actual image */}
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-accent/60 via-transparent to-transparent"></div>
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.02]">
-          <h1 className="font-playfair text-[20vw] font-bold text-foreground whitespace-nowrap select-none">AFRAZ</h1>
+          <div className="font-playfair text-[20vw] font-bold text-foreground whitespace-nowrap select-none" aria-hidden="true">AFRAZ</div>
         </div>
       </div>
 
@@ -91,16 +91,19 @@ export default function Hero() {
           </div>
           
           <div className="relative w-full">
+            {/* Screen Reader Only SEO H1 */}
+            <h1 className="sr-only">Premium Garment Manufacturing in Karachi - AfrazApparel</h1>
+
             {/* Ghost element to reserve space - use the longest phrase */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair font-bold opacity-0 pointer-events-none leading-[1.2] select-none" aria-hidden="true">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair font-bold opacity-0 pointer-events-none leading-[1.2] select-none" aria-hidden="true">
               {phrases[2].text}
-            </h1>
+            </h2>
             
             {/* Visible typing text positioned over the ghost */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair font-bold text-black dark:text-white leading-[1.2] absolute top-0 left-0 w-full h-full">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair font-bold text-black dark:text-white leading-[1.2] absolute top-0 left-0 w-full h-full" aria-hidden="true">
               {renderTypedText()}
               <span className={`inline-block w-[3px] h-[0.9em] bg-accent ml-2 align-baseline ${(!isDeleting && charsShown === phrases[phraseIndex].text.length) ? 'animate-pulse' : ''}`}></span>
-            </h1>
+            </h2>
           </div>
           
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl leading-relaxed">

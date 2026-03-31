@@ -1,6 +1,48 @@
-import { MapPin, Phone, Mail } from "lucide-react";
+"use client";
+
+import { MapPin, Phone, Mail, Loader2, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactSection() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get("First Name"),
+      lastName: formData.get("Last Name"),
+      email: formData.get("email"),
+      projectDetails: formData.get("Project Details"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit inquiry. Please try again.");
+      }
+
+      setIsSuccess(true);
+      setTimeout(() => setIsSuccess(false), 5000); // Reset success after 5s
+      (e.target as HTMLFormElement).reset();
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    } catch (err: any) {
+      setError(err.message || "An error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="w-full py-24 relative overflow-hidden bg-background border-t border-border">
       <div className="absolute left-0 bottom-0 w-1/2 h-full bg-brand-100/30 blur-[120px] pointer-events-none opacity-40"></div>
@@ -56,12 +98,15 @@ export default function ContactSection() {
             <div className="surface-card p-8 md:p-10 rounded-2xl border border-border shadow-xl dark:shadow-none">
               <h3 className="text-2xl font-playfair font-bold text-foreground mb-6">Send us a message</h3>
               
-              <form action="https://formsubmit.co/afrazapparel13@gmail.com" method="POST" className="space-y-6">
-                {/* FormSubmit Config */}
-                <input type="hidden" name="_subject" value="New Inquiry from Afraz Apparel Website" />
-                <input type="hidden" name="_template" value="table" />
-                {/* Honeypot to prevent spam */}
-                <input type="text" name="_honey" style={{ display: 'none' }} />
+              <form onSubmit={handleSubmit} className="space-y-6 relative">
+                {isSuccess && (
+                  <div className="absolute inset-0 z-20 bg-surface/90 backdrop-blur-sm rounded-lg flex flex-col items-center justify-center border border-accent/20">
+                    <CheckCircle2 className="w-16 h-16 text-accent mb-4 animate-bounce" />
+                    <h4 className="text-xl font-bold text-foreground mb-2">Message Sent!</h4>
+                    <p className="text-muted-foreground text-center px-6">We've received your inquiry and will be in touch shortly.</p>
+                  </div>
+                )}
+
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -108,12 +153,23 @@ export default function ContactSection() {
                   ></textarea>
                 </div>
 
+                {error && <div className="p-3 rounded bg-red-500/10 border border-red-500/20 text-red-500 text-sm">{error}</div>}
+                
                 <button 
                   type="submit"
-                  className="w-full bg-foreground text-background font-bold py-4 rounded-lg hover:bg-accent hover:text-white transition-all duration-300 mt-4 shadow-lg hover:shadow-accent/30"
+                  disabled={isSubmitting}
+                  className="w-full bg-foreground text-background font-bold py-4 rounded-lg hover:bg-accent hover:text-white transition-all duration-300 mt-4 shadow-lg hover:shadow-accent/30 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  Submit Inquiry
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Submit Inquiry"
+                  )}
                 </button>
+
               </form>
             </div>
           </div>

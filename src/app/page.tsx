@@ -3,6 +3,7 @@ import Certifications from "@/components/Certifications";
 import BrandsMarquee from "@/components/BrandsMarquee";
 import Services from "@/components/Services";
 import ContactSection from "@/components/ContactSection";
+import Gallery from "@/components/Gallery";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <BrandsMarquee />
       <Services />
+      <Gallery />
       <Certifications />
       <ContactSection />
     </main>
