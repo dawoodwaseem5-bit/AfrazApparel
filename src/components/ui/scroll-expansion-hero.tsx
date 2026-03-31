@@ -36,6 +36,7 @@ const ScrollExpandMedia = ({
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   const trackHeightVh = Math.max(150, mediaItems.length * 150);
+  const stickOffset = 80; // height of the navbar in pixels
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,11 +45,11 @@ const ScrollExpandMedia = ({
       const rect = sectionRef.current.getBoundingClientRect();
       const top = rect.top;
       
-      const stickyElementHeight = window.innerHeight;
+      const stickyElementHeight = window.innerHeight - stickOffset;
       const scrollDistance = (trackHeightVh / 100) * window.innerHeight - stickyElementHeight;
       
-      if (top <= 0) {
-        const scrolled = -Math.round(top);
+      if (top <= stickOffset) {
+        const scrolled = stickOffset - top;
         const progress = Math.min(Math.max(scrolled / scrollDistance, 0), 1);
         setScrollProgress(progress);
       } else {
@@ -127,7 +128,10 @@ const ScrollExpandMedia = ({
         style={{ height: `${trackHeightVh}vh` }} 
         className='w-full'
       >
-        <div className='sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col items-center justify-start bg-background border-b border-border'>
+        <div 
+          className='sticky w-full overflow-hidden flex flex-col items-center justify-start bg-background border-b border-border'
+          style={{ top: `${stickOffset}px`, height: `calc(100dvh - ${stickOffset}px)` }}
+        >
           
           <motion.div
             className='absolute inset-0 z-0 h-full pointer-events-none'
@@ -146,7 +150,7 @@ const ScrollExpandMedia = ({
           </motion.div>
 
           <div className='container mx-auto flex flex-col items-center justify-start relative z-10 h-full'>
-            <div className='flex flex-col items-center justify-center w-full h-[100dvh] relative'>
+            <div className='flex flex-col items-center justify-center w-full h-full relative'>
               
               {/* Media Expansion Block */}
               <div
