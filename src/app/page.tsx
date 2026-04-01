@@ -5,12 +5,14 @@ import Services from "@/components/Services";
 import ContactSection from "@/components/ContactSection";
 import Gallery from "@/components/Gallery";
 import CallToAction from "@/components/CallToAction";
+import TruckScroll from "@/components/TruckScroll";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <Hero />
       <Certifications />
+      <TruckScroll />
       <Services />
       <Gallery />
       <CallToAction />
