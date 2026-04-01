@@ -4,15 +4,17 @@ import BrandsMarquee from "@/components/BrandsMarquee";
 import Services from "@/components/Services";
 import ContactSection from "@/components/ContactSection";
 import Gallery from "@/components/Gallery";
+import CallToAction from "@/components/CallToAction";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <Hero />
-      <BrandsMarquee />
+      <Certifications />
       <Services />
       <Gallery />
-      <Certifications />
+      <CallToAction />
+      <BrandsMarquee />
       <ContactSection />
     </main>
   );

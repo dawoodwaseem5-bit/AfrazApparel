@@ -95,6 +95,9 @@ const ScrollExpandMedia = ({
     return 1; 
   };
 
+  const clampMap = (val: number, inMin: number, inMax: number) => 
+    Math.min(Math.max((val - inMin) / (inMax - inMin), 0), 1);
+
   // 3. Text Progress calculation
   // Computes how visible text [i] should be (0 to 1) 
   const getTextProgress = (i: number) => {
@@ -105,20 +108,20 @@ const ScrollExpandMedia = ({
     // First image's text behaves like original: fades out as expansion completes.
     if (i === 0) {
       if (scrollProgress <= expansionPhaseEnd) {
-         return 1 - expansionProgress;
+         return clampMap(1 - expansionProgress, 0, 0.8);
       }
       return 0;
     }
 
     // Images 1-4 fade in precisely when their images crossfade
-    if (transitionIndex === i - 1) return fadeAmount;       // coming in
-    if (transitionIndex === i) return 1 - fadeAmount;       // leaving
+    if (transitionIndex === i - 1) return clampMap(fadeAmount, 0, 0.7);       // coming in
+    if (transitionIndex === i) return 1 - clampMap(fadeAmount, 0.3, 1);       // leaving
     
     return 0; // inactive
   };
 
-  const mediaWidth = 300 + expansionProgress * (isMobileState ? 650 : 1250);
-  const mediaHeight = 400 + expansionProgress * (isMobileState ? 200 : 400);
+  const mediaWidth = `calc(300px + ${expansionProgress} * (100vw - 300px))`;
+  const mediaHeight = `calc(400px + ${expansionProgress} * (100% - 400px))`;
 
   return (
     <div className='relative w-full bg-background'>
@@ -154,12 +157,11 @@ const ScrollExpandMedia = ({
               
               {/* Media Expansion Block */}
               <div
-                className='absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-none rounded-2xl overflow-hidden'
+                className='absolute z-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-none overflow-hidden'
                 style={{
-                  width: `${mediaWidth}px`,
-                  height: `${mediaHeight}px`,
-                  maxWidth: '95vw',
-                  maxHeight: '85vh',
+                  width: mediaWidth,
+                  height: mediaHeight,
+                  borderRadius: `calc(1rem - ${expansionProgress} * 1rem)`,
                   boxShadow: '0px 0px 50px rgba(0, 0, 0, 0.6)',
                 }}
               >
@@ -187,23 +189,7 @@ const ScrollExpandMedia = ({
                     transition={{ duration: 0.2 }}
                   />
                   
-                  {/* Inner text content like Dates */}
-                  {mediaItems.map((item, i) => {
-                    const progress = getTextProgress(i);
-                    const offset = (1 - progress) * (isMobileState ? 180 : 150);
-                    if (progress <= 0 || !item.date) return null;
-
-                    return (
-                      <div key={`date-${i}`} className='absolute inset-0 z-50 flex flex-col items-center justify-center pointer-events-none' style={{ opacity: progress }}>
-                        <p
-                          className='text-2xl text-white/90 mt-4 transition-none absolute'
-                          style={{ transform: `translateX(-${offset}vw)` }}
-                        >
-                          {item.date}
-                        </p>
-                      </div>
-                    );
-                  })}
+                  {/* Inner text content omitted here, moved outwards */}
                   
                   {scrollToExpand && (
                     <div className="absolute inset-x-0 bottom-10 flex justify-center z-50 pointer-events-none">
@@ -247,6 +233,14 @@ const ScrollExpandMedia = ({
                     >
                       {restOfTitle}
                     </h2>
+                    {item.date && (
+                      <p
+                        className='text-xl md:text-2xl text-white/90 font-medium tracking-wide mt-2 md:mt-4 transition-none drop-shadow-lg'
+                        style={{ transform: `translateX(-${offset}vw)` }}
+                      >
+                        {item.date}
+                      </p>
+                    )}
                   </div>
                 );
               })}
