@@ -32,13 +32,14 @@ export default function TruckScroll() {
       
       <div className="w-full h-48 md:h-64 lg:h-80 relative border-b-4 border-dashed border-accent/60 bg-muted/20">
         <motion.div 
-          className="absolute -bottom-8 md:-bottom-16 lg:-bottom-24 z-20 flex justify-center w-full"
+          className="absolute -bottom-8 md:-bottom-16 lg:-bottom-24 z-20 flex justify-center w-full will-change-transform transform-gpu"
           style={{ x }}
           animate={{ y: [0, -4, 0] }}
           transition={{ repeat: Infinity, duration: 0.4, ease: "easeInOut" }}
         >
           {/* Mirror the truck horizontally so it faces right while driving right */}
-          <div className="relative -scale-x-100 drop-shadow-xl translate-y-[15%]">
+          {/* Removed drop-shadow to dramatically increase mobile GPU performance */}
+          <div className="relative -scale-x-100 translate-y-[15%] transform-gpu">
             <Image 
               src="/truck.png"
               alt="Dispatch Container Truck"
