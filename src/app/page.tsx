@@ -13,10 +13,10 @@ export default function Home() {
       <Hero />
       <Certifications />
       <TruckScroll />
-      <Services />
-      <Gallery />
-      <CallToAction />
       <BrandsMarquee />
+      <CallToAction />
+      <Gallery />
+      <Services />
       <ContactSection />
     </main>
   );

@@ -36,12 +36,12 @@ export default function BrandsMarquee() {
               style={{ width: "160px", height: "100px" }}
             >
               <div className="relative w-full h-full flex items-center justify-center">
-                <div className={`relative w-full h-full rounded-2xl overflow-hidden ${brand.invert ? 'bg-accent text-transparent' : 'bg-transparent'}`}>
+                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-white flex items-center justify-center border border-gray-200 shadow-sm">
                   <Image 
                     src={brand.src} 
                     alt={`${brand.name} logo`}
                     fill
-                    className={`object-contain p-4 transition-all duration-300 ${brand.invert ? 'filter grayscale brightness-110 invert mix-blend-screen opacity-70 group-hover:opacity-100' : 'filter brightness-105 contrast-110 opacity-70 group-hover:opacity-100'}`}
+                    className="object-contain p-4 transition-all duration-300 opacity-80 group-hover:opacity-100 hover:scale-105"
                     sizes="160px"
                   />
                 </div>
