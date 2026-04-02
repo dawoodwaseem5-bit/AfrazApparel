@@ -44,7 +44,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="w-full py-24 relative overflow-hidden bg-background border-t border-border">
+    <section id="contact" className="w-full pt-24 relative overflow-hidden bg-background border-t border-border">
       <div className="absolute left-0 bottom-0 w-1/2 h-full bg-brand-100/30 blur-[120px] pointer-events-none opacity-40"></div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -175,6 +175,25 @@ export default function ContactSection() {
           </div>
 
         </div>
+      </div>
+
+      <div className="w-full h-1.5 bg-gradient-to-r from-accent/50 via-accent to-accent/50 mt-24 shadow-sm shadow-accent/20"></div>
+
+      {/* Full Width Map Embed Location */}
+      <div className="w-full h-[450px] md:h-[600px] relative overflow-hidden flex mt-0">
+        {/* Subtle overlay for blending */}
+        <div className="absolute inset-0 bg-accent/10 z-10 pointer-events-none opacity-50 block"></div>
+        <iframe 
+          width="100%" 
+          height="100%" 
+          frameBorder="0" 
+          style={{ border: 0, display: "block" }}
+          src="https://maps.google.com/maps?q=R4MC%2BRGX%2C%20P%26T%20Society%20P%26T%20Chs%20Sector%2031%20D%20Korangi%2C%20Karachi%2C%20Pakistan&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+          allowFullScreen
+          title="Afraz Apparel Headquarters Location"
+          className="absolute inset-0 w-full h-full block dark:invert dark:hue-rotate-180 dark:contrast-75 dark:opacity-80 transition-all duration-700 pointer-events-auto"
+          loading="lazy"
+        ></iframe>
       </div>
     </section>
   );
