@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const phrases = [
   { text: "Elevating Fashion Through Meticulous Craft.", highlight: "Fashion" },
   { text: "Your end-to-end manufacturing partner.", highlight: "manufacturing" },
-  { text: "Premium Apparel Manufacturing in the Heart of Karachi, Pakistan.", highlight: "Karachi." }
+  { text: "Premium Apparel Manufacturing in the Heart of Karachi, Pakistan.", highlight: "Karachi" }
 ];
 
 export default function Hero() {
