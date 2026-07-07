@@ -147,18 +147,22 @@ export default function Hero() {
         <div className="w-full md:w-2/5 relative">
           <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-surface p-2 shadow-2xl hover-lift group border border-border">
             <div className="absolute inset-0 bg-gradient-to-tr from-brand-100 dark:from-brand-900/30 to-transparent opacity-50 z-10 transition-opacity group-hover:opacity-100"></div>
-            {/* Visual element representing precision/clothing since no actual image provided */}
-            <div className="w-full h-full bg-muted rounded-2xl flex items-center justify-center relative overflow-hidden border border-border">
-              <div className="absolute w-64 h-64 bg-accent/20 rounded-full blur-3xl -top-10 -right-10"></div>
-              <div className="absolute w-64 h-64 bg-foreground/5 rounded-full blur-3xl -bottom-10 -left-10"></div>
-              
-              <div className="text-center z-20">
-                <div className="w-24 h-24 mx-auto border border-border rounded-full flex items-center justify-center mb-6 p-2 bg-surface shadow-sm">
-                  <img src="/logo.png" alt="AfrazApparel Mastery" className="w-16 h-16 object-contain" />
-                </div>
-                <h3 className="font-playfair text-2xl font-bold text-foreground mb-2">Since 1995</h3>
-                <p className="text-sm text-brand-600 dark:text-brand-400 font-semibold tracking-widest uppercase">Mastery in Every Stitch</p>
-              </div>
+            {/* Video element representing precision/clothing */}
+            <div className="w-full h-full bg-white dark:bg-black rounded-2xl flex items-center justify-center relative overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm">
+              <video 
+                src="/Afraz_Apparel_Logo_Video_Ready.mp4" 
+                autoPlay 
+                muted 
+                playsInline
+                onLoadedMetadata={(e) => {
+                  e.currentTarget.currentTime = 1;
+                }}
+                onEnded={(e) => {
+                  e.currentTarget.currentTime = 1;
+                  e.currentTarget.play();
+                }}
+                className="absolute inset-0 w-full h-full object-cover mix-blend-multiply dark:mix-blend-normal"
+              />
             </div>
           </div>
           {/* Decorative elements */}
