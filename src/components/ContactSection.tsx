@@ -77,7 +77,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="text-foreground font-bold mb-1">Call Us</h4>
-                  <p className="text-muted-foreground text-sm">+1 (555) 123-4567<br/>Mon-Fri, 9am - 6pm EST</p>
+                  <p className="text-muted-foreground text-sm">+92 316 1006716<br/>Mon-Sat, 9am - 6pm PKT</p>
                 </div>
               </div>
 

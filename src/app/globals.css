@@ -17,6 +17,8 @@
 
   --color-footer-bg: var(--footer-bg);
 
+  --color-product-bg: var(--product-bg);
+
   --font-sans: var(--font-inter);
 
   --color-brand-50: #fff8f5;
@@ -80,6 +82,9 @@
   --navbar-bg: rgba(255, 255, 255, 0.8);
 
   --footer-bg: #1c1c1c;
+
+  /* Studio-style backdrop behind transparent product PNGs */
+  --product-bg: #f2f0ec;
 }
 
 .dark {
@@ -98,6 +103,8 @@
   --navbar-bg: rgba(5, 5, 5, 0.8);
 
   --footer-bg: var(--muted);
+
+  --product-bg: #161616;
 }
 
 html {
