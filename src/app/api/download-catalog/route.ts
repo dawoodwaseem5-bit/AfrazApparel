@@ -7,11 +7,11 @@ export async function GET() {
     const db = await getDb();
     const docEntry = await db
       .collection("documents")
-      .findOne({ type: "profile" });
+      .findOne({ type: "catalog" });
 
     if (!docEntry || !docEntry.fileId) {
       return NextResponse.json(
-        { error: "Profile not found" },
+        { error: "Catalog not found" },
         { status: 404 }
       );
     }
@@ -22,7 +22,7 @@ export async function GET() {
     const files = await bucket.find({ _id: objectId }).toArray();
     if (files.length === 0) {
       return NextResponse.json(
-        { error: "Profile file not found in storage" },
+        { error: "Catalog file not found in storage" },
         { status: 404 }
       );
     }
@@ -37,7 +37,7 @@ export async function GET() {
     });
 
     const buffer = Buffer.concat(chunks);
-    const filename = docEntry.filename || "AfrazApparel-Profile-2025.pdf";
+    const filename = docEntry.filename || "AfrazApparel-Catalog-2026.pdf";
 
     return new NextResponse(buffer, {
       status: 200,
@@ -48,10 +48,10 @@ export async function GET() {
       },
     });
   } catch (err) {
-    console.error("Profile download error:", err);
+    console.error("Catalog download error:", err);
     return NextResponse.json(
-      { error: "Profile not found" },
-      { status: 404 }
+      { error: "Failed to download catalog" },
+      { status: 500 }
     );
   }
 }

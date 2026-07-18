@@ -65,7 +65,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/AFRAZ_CATALOG_2026.pdf" download="AfrazApparel-Catalog-2026.pdf" className="inline-flex items-center gap-1.5 text-gray-400 text-sm hover:text-accent transition-colors">
+                <a href="/api/download-catalog" download="AfrazApparel-Catalog-2026.pdf" className="inline-flex items-center gap-1.5 text-gray-400 text-sm hover:text-accent transition-colors">
                   Download Catalog <Download size={13} />
                 </a>
               </li>

@@ -120,7 +120,7 @@ export default function Hero() {
               Download Profile <Download size={18} />
             </a>
             <a 
-              href="/AFRAZ_CATALOG_2026.pdf"
+              href="/api/download-catalog"
               download="AfrazApparel-Catalog-2026.pdf"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-foreground text-background font-semibold rounded-full hover:bg-accent hover:text-white transition-colors duration-300 hover-lift shadow-lg"
             >

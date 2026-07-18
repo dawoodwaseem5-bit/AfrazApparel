@@ -5,7 +5,6 @@ import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   collectionLabels,
-  products,
   type Product,
   type ProductCollection,
 } from "@/data/products";
@@ -102,10 +101,24 @@ function ProductCard({
 export default function ProductShowcase() {
   const [mounted, setMounted] = useState(false);
   const [active, setActive] = useState<ProductCollection>("men");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const reducedMotion = !!useReducedMotion();
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 50);
+    
+    // Fetch products from MongoDB API
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setProducts(data);
+        }
+      })
+      .catch((err) => console.error("Failed to fetch products:", err))
+      .finally(() => setLoading(false));
+      
     return () => clearTimeout(t);
   }, []);
 
@@ -116,11 +129,11 @@ export default function ProductShowcase() {
     >;
     for (const p of products) c[p.collection]++;
     return c;
-  }, []);
+  }, [products]);
 
   const visible = useMemo(
     () => products.filter((p) => p.collection === active),
-    [active]
+    [active, products]
   );
 
   return (
@@ -194,26 +207,38 @@ export default function ProductShowcase() {
           })}
         </motion.div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 min-w-0 w-full"
-            initial="hidden"
-            animate="visible"
-            exit={{ opacity: 0, transition: { duration: 0.15 } }}
-            variants={{
-              visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.04 } },
-            }}
-          >
-            {visible.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                reducedMotion={reducedMotion}
-              />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 min-w-0 w-full"
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, transition: { duration: 0.15 } }}
+              variants={{
+                visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.04 } },
+              }}
+            >
+              {visible.length > 0 ? (
+                visible.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    reducedMotion={reducedMotion}
+                  />
+                ))
+              ) : (
+                <div className="col-span-full py-12 text-center text-muted-foreground">
+                  No products found in this collection.
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        )}
       </div>
     </section>
   );
