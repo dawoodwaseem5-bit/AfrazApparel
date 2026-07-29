@@ -30,7 +30,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 w-full max-w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? "glass py-3" 
+          ? "glass py-3 shadow-[0_4px_30px_rgba(0,0,0,0.1)]" 
           : "bg-transparent py-5"
       }`}
     >
@@ -39,7 +39,9 @@ export default function Navbar() {
           <div className="relative w-14 h-14 transition-transform group-hover:scale-105">
             <img src="/logo.png" alt="AfrazApparel Logo" className="object-contain w-full h-full" />
           </div>
-          <span className="font-playfair text-xl font-semibold tracking-wide text-black dark:text-white">
+          <span className={`font-playfair text-xl font-semibold tracking-wide transition-colors ${
+            isScrolled ? "text-black dark:text-white" : "text-white"
+          }`}>
             Afraz<span className="text-accent">Apparel</span>
           </span>
         </Link>
@@ -48,7 +50,9 @@ export default function Navbar() {
         <nav className="hidden md:flex gap-8 items-center">
           {navLinks.map((link) => {
             const isRoute = link.href.startsWith("/");
-            const className = "text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-accent dark:hover:text-accent transition-colors relative group";
+            const className = `text-sm font-medium hover:text-accent transition-colors relative group ${
+              isScrolled ? "text-gray-700 dark:text-gray-300 dark:hover:text-accent" : "text-white/80 hover:text-white"
+            }`;
             const content = (
               <>
                 {link.name}
@@ -68,7 +72,11 @@ export default function Navbar() {
           <ThemeToggle />
           <a
             href="#contact"
-            className="px-6 py-2 rounded-full bg-black dark:bg-white text-white dark:text-black hover:bg-accent dark:hover:bg-accent hover:text-white transition-all duration-300 font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5"
+            className={`px-6 py-2 rounded-full transition-all duration-300 font-medium text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 ${
+              isScrolled 
+                ? "bg-black dark:bg-white text-white dark:text-black hover:bg-accent dark:hover:bg-accent hover:text-white"
+                : "bg-accent text-white hover:bg-[#E64A19]"
+            }`}
           >
             Get a Quote
           </a>
@@ -79,7 +87,9 @@ export default function Navbar() {
           <ThemeToggle />
           <button
             aria-label="Toggle mobile menu"
-            className="text-black dark:text-white hover:text-accent transition-colors p-2 -mr-2 touch-manipulation"
+            className={`hover:text-accent transition-colors p-2 -mr-2 touch-manipulation ${
+              isScrolled ? "text-black dark:text-white" : "text-white"
+            }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
