@@ -102,9 +102,14 @@ export default function Footer() {
           <p className="text-gray-500 text-xs">
             &copy; {new Date().getFullYear()} AfrazApparel Manufacturing. All rights reserved.
           </p>
-          <p className="text-gray-500 text-xs">
-            Manufacturer &amp; Exporter of Knitted Fashion Garments
-          </p>
+          <div className="flex flex-col md:items-end items-center gap-1">
+            <p className="text-gray-500 text-xs">
+              Manufacturer &amp; Exporter of Knitted Fashion Garments
+            </p>
+            <p className="text-gray-500 text-xs">
+              Designed by <a href="https://www.linkedin.com/in/dawood-waseem-94724221a/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Dawood Waseem</a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
