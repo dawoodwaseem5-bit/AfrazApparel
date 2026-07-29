@@ -5,8 +5,8 @@ import { Mail, Phone } from "lucide-react";
 
 const teamMembers = [
   {
-    id: "ceo",
-    role: "CEO",
+    id: "director",
+    role: "Director",
     name: "Muhammad Shahid Khan",
     bio: "Leading Afraz Apparel with 30+ years of industry experience, driving the company's vision of world-class garment manufacturing.",
     email: "Shahidkhan@afrazapparel.com.pk",
@@ -54,8 +54,8 @@ const teamMembers = [
     ),
   },
   {
-    id: "proprietor",
-    role: "Sole Proprietor",
+    id: "ceo",
+    role: "CEO",
     name: "Muhammad Afraz Khan",
     bio: "Founder and owner of Afraz Apparel, overseeing the company's strategic direction and long-term growth across global markets.",
     email: "afrazkhan@afrazapparel.com.pk",
@@ -95,53 +95,7 @@ const teamMembers = [
       </svg>
     ),
   },
-  {
-    id: "director-marketing",
-    role: "Director Marketing",
-    name: "Aziz Ul Haque",
-    bio: "Spearheads Afraz Apparel's global marketing strategy, building relationships with international buyers and expanding the brand's reach.",
-    email: "azizulhaque@afrazapparel.com.pk",
-    phone: "+92 300 824 3425",
-    circleColor: "bg-[#fef0de]",
-    hoverCircleColor: "#fbb359",
-    hoverShadow: "rgba(251,179,89,0.35)",
-    svg: (
-      <svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg" className="max-w-[260px] w-full">
-        <circle fillRule="evenodd" clipRule="evenodd" fill="#fef0de" cx="130" cy="85" r="85" />
-        <g>
-          <line stroke="#212226" strokeWidth="2" strokeLinecap="square" x1="1" y1="150" x2="6" y2="150" />
-          <line stroke="#212226" strokeWidth="2" strokeLinecap="square" x1="254" y1="150" x2="259" y2="150" />
-          <line stroke="#212226" strokeWidth="2" strokeLinecap="square" x1="14" y1="150" x2="246" y2="150" />
-        </g>
-        <g id="qc-body">
-          <path fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="square" d="M90,88h80c1.1,0,2,.9,2,2v52c0,1.1-.9,2-2,2H90c-1.1,0-2-.9-2-2V90C88,88.9,88.9,88,90,88z" />
-          <circle fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="square" cx="130" cy="116" r="5" />
-          <path fill="none" stroke="#212226" strokeWidth="2" d="M124,72v5c0,1.657,2.686,3,6,3c3.314,0,6-1.343,6-3v-5" />
-          <path fill="none" stroke="#212226" strokeWidth="2" d="M124,77l-19.068,3.178C101.766,80.706,98.926,82.433,97,85" />
-          <path fill="none" stroke="#212226" strokeWidth="2" d="M136,77l19.068,3.178c3.166,0.528,6.006,2.255,7.932,4.822" />
-          <rect x="93" y="139" fill="#212226" width="74" height="1" />
-          <path fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="square" d="M110,45c0-11.046,8.954-20,20-20s20,8.954,20,20c0,14-7,28-20,28S110,59,110,45z" />
-          <path fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="square" d="M74,136c-4.418,0-8,3.582-8,8h16C82,139.582,78.418,136,74,136z" />
-        </g>
-        <g id="qc-clipboard">
-          <path fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="square" d="M224,117h-35c-1.1,0-2,.9-2,2v22c0,1.1,.9,2,2,2h35c1.1,0,2-.9,2-2v-22C226,117.9,225.1,117,224,117z" />
-          <rect x="200" y="113" fill="none" stroke="#212226" strokeWidth="2" width="13" height="6" rx="1" />
-          <line stroke="#212226" strokeWidth="2" strokeLinecap="square" x1="193" y1="127" x2="221" y2="127" />
-          <line stroke="#212226" strokeWidth="2" strokeLinecap="square" x1="193" y1="133" x2="215" y2="133" />
-          <polyline fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="round" points="193,122 196,125 202,119" />
-        </g>
-        <g id="qc-bubble">
-          <path fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="square" d="M179,14c-1.1,0-2,.9-2,2v35l10-9h30c1.1,0,2-.9,2-2V16c0-1.1-.9-2-2-2H179z" />
-          <polyline fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="round" points="187,28 193,34 207,20" />
-        </g>
-        <g id="qc-mug">
-          <path fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="square" d="M31,116h24v26c0,1.1-.9,2-2,2H33c-1.1,0-2-.9-2-2V116z" />
-          <path fill="none" stroke="#212226" strokeWidth="2" strokeLinecap="square" d="M55,122h3c1.1,0,2,.9,2,2v8c0,1.1-.9,2-2,2h-3" />
-          <rect x="50" y="119" fill="#212226" width="1" height="20" />
-        </g>
-      </svg>
-    ),
-  },
+
   {
     id: "marketing-manager",
     role: "Marketing & Merchandising Manager",
